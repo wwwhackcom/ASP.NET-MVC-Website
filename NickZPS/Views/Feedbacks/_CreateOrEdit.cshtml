@@ -1,0 +1,28 @@
+@model NickZPS.Models.Feedback
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.UserName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.UserName)
+    @Html.ValidationMessageFor(model => model.UserName)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Email)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Message)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Message)
+    @Html.ValidationMessageFor(model => model.Message)
+</div>
+

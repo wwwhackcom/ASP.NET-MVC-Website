@@ -1,0 +1,93 @@
+﻿@model IEnumerable<NickZPS.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    
+</script>
+<div style="height:1000px;margin-top:20px">
+    <h2>Most Popular</h2>
+
+    <div class="row">
+        @foreach (var item in Model)
+            {
+            <div class="col-sm-6 col-md-3" style="margin-bottom:10px">
+                <div class="thumbnail">
+                    <img src=@item.ProductPoster
+                         alt="thumbnail1">
+                    <div class="caption">
+                        <p>@Html.ActionLink(item.ProductName, "Index", "ShowProduct", new { id = item.ProductID }, null)</p>
+                        <p style="font-size:larger;"><b>NZ$@item.UnitPrice</b></p>
+                        <p>
+                            @Html.ActionLink("Buy now", "Add", "Cart", new { id = item.ProductID }, new { @class = "btn btn-primary" })
+                            @*<a href="/Cart" class="btn btn-primary" role="button">
+                                Buy now
+                            </a>*@
+                            @Html.ActionLink("Add Cart", "Add", "Cart", new { id = item.ProductID }, new { @class = "btn btn-default" })
+                            @*<a href="/Cart" class="btn btn-default" role="button">
+                                Add Cart
+                            </a>*@
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <h2>Categories</h2>
+
+    <div class="row">
+        <div id="div1" class="col-sm-6 col-md-3">
+            <div class="thumbnail" onclick="window.location='/HomeCategory'">
+                <img src="/Images/beds.jpg"
+                     alt="thumbnail1">
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail" onclick="window.location='/HomeCategory'">
+                <img src="/Images/bowls.jpg"
+                     alt="thumbnail1">
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail" onclick="window.location='/HomeCategory'">
+                <img src="/Images/dogCollars.jpg"
+                     alt="thumbnail1">
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail" onclick="window.location='/HomeCategory'">
+                <img src="/Images/DogToys.jpg"
+                     alt="thumbnail1">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail" onclick="window.location='/HomeCategory'">
+                <img src="/Images/FleaProducts.jpg"
+                     alt="thumbnail1">
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail" onclick="window.location='/HomeCategory'">
+                <img src="/Images/Grooming.jpg"
+                     alt="thumbnail1">
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail" onclick="window.location='/HomeCategory'">
+                <img src="/Images/HealthProduct.jpg"
+                     alt="thumbnail1">
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail" onclick="window.location='/HomeCategory'">
+                <img src="/Images/VetDiets.jpg"
+                     alt="thumbnail1">
+            </div>
+        </div>
+    </div>
+
+</div>

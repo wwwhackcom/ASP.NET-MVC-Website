@@ -1,0 +1,50 @@
+﻿@model IEnumerable<NickZPS.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="heading-page" style="width:100%;margin-bottom:10px;display:none">
+    <h1>Category</h1>
+</div>
+<div class="main col2-left-layout" style="margin-top:20px;">
+    <div class="col-left sidebar">
+        <div class="block block-layered-nav">
+            <div class="block-title">
+                <strong><span>Categories</span></strong>
+            </div>
+            <div class="block-content" style="height:50px">
+                <ul>
+                    @foreach (var item in ViewBag.Categories)
+                    {
+                        @*<li><a href="/HomeCategory/Products/@item.CategoryID">@item.CategoryName</a></li>*@
+                        <li style="float:left;margin-right:30px;font-size:large">@Html.ActionLink((string)item.CategoryName, "Products", new { id = item.CategoryID })</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-h" >
+    <div class="row">
+        @foreach (var item in Model)
+            {
+            <div class="col-sm-6 col-md-3" style="margin-bottom:10px">
+                <div class="thumbnail">
+                    <img src=@item.ProductPoster
+                         alt="thumbnail1">
+                    <div class="caption">
+                        <p>@Html.ActionLink(item.ProductName, "Index", "ShowProduct", new { id = item.ProductID }, null)</p>
+                        <p style="font-size:larger;"><b>NZ$@item.UnitPrice</b></p>
+                        <p>
+                            @Html.ActionLink("Buy now", "Add", "Cart", new { id = item.ProductID }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Add Cart", "Add", "Cart", new { id = item.ProductID }, new { @class = "btn btn-default" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

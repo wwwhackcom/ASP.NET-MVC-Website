@@ -1,0 +1,50 @@
+﻿@model IEnumerable<NickZPS.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "HistoryDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2>Order History Details</h2>
+
+<table style="width:100%">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            UnitPrice
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Discount
+        </th>
+        <th>
+            Product
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.ID
+            </td>
+            <td>
+                @String.Format("{0:F}", item.UnitPrice)
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @item.Discount
+            </td>
+            <td>
+                @Html.DisplayTextFor(_ => item.ProductName).ToString()
+            </td>
+        </tr>
+    }
+
+</table>

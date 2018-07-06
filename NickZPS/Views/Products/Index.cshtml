@@ -1,0 +1,77 @@
+@model IEnumerable<NickZPS.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Product List</h2>
+
+<p>
+    @Html.ActionLink("Create New Product", "Create")
+</p>
+<table style="width:100%">
+    <tr>
+        <th>Operation</th>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            UnitPrice
+        </th>
+        <th>
+            UnitsInStock
+        </th>
+        <th>
+            UnitsOnOrder
+        </th>
+        @*<th>
+            Poster
+        </th>*@
+        <th>
+            Category
+        </th>
+        <th>
+            OrderDetails
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+        </td>
+        <td>
+			@item.ProductName
+        </td>
+        <td>
+			@item.ProductDescription
+        </td>
+        <td>
+			@String.Format("{0:F}", item.UnitPrice)
+        </td>
+        <td>
+			@item.UnitsInStock
+        </td>
+        <td>
+			@item.UnitsOnOrder
+        </td>
+        @*<td>
+			@item.ProductPoster
+        </td>*@
+        <td>
+			@Html.DisplayTextFor(_ => item.Category.CategoryName).ToString()
+        </td>
+        <td>
+			@(item.OrderDetails == null ? "None" : item.OrderDetails.Count.ToString())
+        </td>
+    </tr>
+}
+
+</table>
+
+

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<NickZPS.Models.Order>
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br/>
+<h2>Order History</h2>
+
+<table style="width:100%">
+    <tr>
+        <th>
+            OrderDate
+        </th>
+        <th>
+            Total
+        </th>
+        <th>
+            Reciever Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            City
+        </th>
+        <th>
+            Region
+        </th>
+        <th>
+            User
+        </th>
+        <th>
+            OrderDetails
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @String.Format("{0:g}", item.OrderDate)
+            </td>
+            <td>
+                @item.SubTotal
+            </td>
+            <td>
+                @item.ShipName
+            </td>
+            <td>
+                @item.ShipAddress
+            </td>
+            <td>
+                @item.ShipCity
+            </td>
+            <td>
+                @item.ShipRegion
+            </td>
+            <td>
+                @(item.User == null ? "None" : item.User.UserName)
+            </td>
+            <td>
+                @*@(item.OrderDetails == null ? "None" : item.OrderDetails.Count.ToString())*@
+                @Html.ActionLink("Detail", "HistoryDetails", new { id = item.OrderID })
+            </td>
+        </tr>
+    }
+
+</table>

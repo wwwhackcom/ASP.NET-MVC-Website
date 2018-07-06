@@ -1,0 +1,47 @@
+@model IEnumerable<NickZPS.Models.Category>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<h2>Category List</h2>
+
+<p align="left">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table style="width:100%">
+    <tr>
+        <th>Operation</th>
+        <th>
+            CategoryName
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            PicturePath
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CategoryID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryID })
+        </td>
+        <td>
+			@item.CategoryName
+        </td>
+        <td>
+			@item.Description
+        </td>
+        <td>
+			@item.PicturePath
+        </td>
+    </tr>
+}
+
+</table>
+
+

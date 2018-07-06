@@ -1,0 +1,26 @@
+@model NickZPS.Models.Shipper
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Shipper</legend>
+
+    <div class="display-label">CompanyName</div>
+    <div class="display-field">@Model.CompanyName</div>
+
+    <div class="display-label">Phone</div>
+    <div class="display-field">@Model.Phone</div>
+
+    <div class="display-label">Orders</div>
+    <div class="display-field">@(Model.Orders == null ? "None" : Model.Orders.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ShipperID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

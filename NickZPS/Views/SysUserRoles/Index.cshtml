@@ -1,0 +1,41 @@
+@model IEnumerable<NickZPS.Models.SysUserRole>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>SysUserRole List</h2>
+
+<p>
+    @Html.ActionLink("Create New SysUserRole", "Create")
+</p>
+<table style="width:100%">
+    <tr>
+        <th>Operation</th>
+        <th>
+            SysUser
+        </th>
+        <th>
+            SysRole
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+			@(item.SysUser == null ? "None" : item.SysUser.UserName)
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.SysRole.RoleName).ToString()
+        </td>
+    </tr>
+}
+
+</table>
+
+

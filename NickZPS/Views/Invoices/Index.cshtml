@@ -1,0 +1,59 @@
+@model IEnumerable<NickZPS.Models.Invoice>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Invoice List</h2>
+
+<p>
+    @Html.ActionLink("Create New Invoice", "Create")
+</p>
+<table style="width:100%">
+    <tr>
+        <th>Operation</th>
+        <th>
+            InvoiceDate
+        </th>
+        <th>
+            SubTotal
+        </th>
+        <th>
+            Discount
+        </th>
+        <th>
+            User
+        </th>
+        <th>
+            InvoiceDetails
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.InvoiceID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.InvoiceID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.InvoiceID })
+        </td>
+        <td>
+			@String.Format("{0:g}", item.InvoiceDate)
+        </td>
+        <td>
+			@String.Format("{0:F}", item.SubTotal)
+        </td>
+        <td>
+			@item.Discount
+        </td>
+        <td>
+			@(item.User == null ? "None" : item.User.UserName)
+        </td>
+        <td>
+			@(item.InvoiceDetails == null ? "None" : item.InvoiceDetails.Count.ToString())
+        </td>
+    </tr>
+}
+
+</table>
+
+

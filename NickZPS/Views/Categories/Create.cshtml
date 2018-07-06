@@ -1,0 +1,27 @@
+@model NickZPS.Models.Category
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create New Category</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Category</legend>
+
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <br />
+        <p>
+            <input type="submit" value="Create" style="display:none" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

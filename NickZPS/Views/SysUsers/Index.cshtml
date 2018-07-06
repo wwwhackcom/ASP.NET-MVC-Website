@@ -1,0 +1,77 @@
+@model IEnumerable<NickZPS.Models.SysUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>User List</h2>
+
+<p>
+    @Html.ActionLink("Create New User", "Create")
+</p>
+<table style="width:100%">
+    <tr>
+        <th>Operation</th>
+        <th>
+            UserName
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Inactive
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            DOB
+        </th>
+        <th>
+            SysUserRoles
+        </th>
+        <th>
+            Orders
+        </th>
+        <th>
+            Invoices
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+			@item.UserName
+        </td>
+        <td>
+			@item.Email
+        </td>
+        <td>
+			@item.IsInactive
+        </td>
+        <td>
+			@item.Phone
+        </td>
+        <td>
+			@String.Format("{0:g}", item.DOB)
+        </td>
+        <td>
+			@(item.SysUserRoles == null ? "None" : item.SysUserRoles.Count.ToString())
+        </td>
+        <td>
+            @Html.ActionLink((item.Orders == null ? "None" : item.Orders.Count.ToString()), "Users", "Orders", new { id = item.ID }, null)
+        </td>
+        <td>
+			@(item.Invoices == null ? "None" : item.Invoices.Count.ToString())
+        </td>
+    </tr>
+}
+
+</table>
+
+

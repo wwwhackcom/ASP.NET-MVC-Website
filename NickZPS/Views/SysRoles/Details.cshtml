@@ -1,0 +1,26 @@
+@model NickZPS.Models.SysRole
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>SysRole</legend>
+
+    <div class="display-label">RoleName</div>
+    <div class="display-field">@Model.RoleName</div>
+
+    <div class="display-label">RoleDesc</div>
+    <div class="display-field">@Model.RoleDesc</div>
+
+    <div class="display-label">SysUserRoles</div>
+    <div class="display-field">@(Model.SysUserRoles == null ? "None" : Model.SysUserRoles.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

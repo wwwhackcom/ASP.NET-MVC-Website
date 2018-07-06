@@ -1,0 +1,26 @@
+@model NickZPS.Models.SysUserRole
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>SysUserRole</legend>
+
+    <div class="display-label">SysUser</div>
+    <div class="display-field">@(Model.SysUser == null ? "None" : Model.SysUser.LastName)</div>
+
+    <div class="display-label">SysRole</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.SysRole).ToString()</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+

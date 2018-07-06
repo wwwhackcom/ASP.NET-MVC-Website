@@ -1,0 +1,84 @@
+@model NickZPS.Models.SysUser
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.UserName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.UserName)
+    @Html.ValidationMessageFor(model => model.UserName)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Email)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Password)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Password)
+    @Html.ValidationMessageFor(model => model.Password)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.FirstName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.FirstName)
+    @Html.ValidationMessageFor(model => model.FirstName)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.LastName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.LastName)
+    @Html.ValidationMessageFor(model => model.LastName)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Phone)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Phone)
+    @Html.ValidationMessageFor(model => model.Phone)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.DOB)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DOB)
+    @Html.ValidationMessageFor(model => model.DOB)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Desc)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Desc)
+    @Html.ValidationMessageFor(model => model.Desc)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.AvararPath)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.AvararPath)
+    @Html.ValidationMessageFor(model => model.AvararPath)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IsInactive, "Inactivie")
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.IsInactive)
+    @Html.ValidationMessageFor(model => model.IsInactive)
+</div>
+

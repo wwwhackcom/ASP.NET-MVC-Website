@@ -1,0 +1,111 @@
+@model NickZPS.Models.Product
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+<form enctype="multipart/form-data" action="/Products/UploadFile" method="post" id="UploadForm">
+    <div style="padding:15px;display:none; text-align:left;">
+        <input type="file" style="margin-bottom:10px;" name="UploadImage" id="UploadImage">
+        <input type="submit" class="btn btn-primary" value="Upload">
+    </div>
+</form>
+<br />
+<form action="/Products/UploadFile" method="post" enctype="multipart/form-data">
+
+    @Html.HiddenFor(model => model.ProductID)
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ProductName)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.ProductName)
+        @Html.ValidationMessageFor(model => model.ProductName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ProductDescription)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.ProductDescription)
+        @Html.ValidationMessageFor(model => model.ProductDescription)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.QuantityPerUnit)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.QuantityPerUnit)
+        @Html.ValidationMessageFor(model => model.QuantityPerUnit)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.UnitPrice)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.UnitPrice)
+        @Html.ValidationMessageFor(model => model.UnitPrice)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.UnitsInStock)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.UnitsInStock)
+        @Html.ValidationMessageFor(model => model.UnitsInStock)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.UnitsOnOrder)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.UnitsOnOrder)
+        @Html.ValidationMessageFor(model => model.UnitsOnOrder)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ReorderLevel)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.ReorderLevel)
+        @Html.ValidationMessageFor(model => model.ReorderLevel)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Discontinued)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Discontinued)
+        @Html.ValidationMessageFor(model => model.Discontinued)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IsHome)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.IsHome)
+        @Html.ValidationMessageFor(model => model.IsHome)
+    </div>
+
+    <div class="editor-label">
+        Category
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.CategoryID, ((IEnumerable<NickZPS.Models.Category>)ViewBag.PossibleCategories).Select(option => new SelectListItem
+   {
+       Text = Html.DisplayTextFor(_ => option.CategoryName).ToString(),
+       Value = option.CategoryID.ToString(),
+       Selected = (Model != null) && (option.CategoryID == Model.CategoryID)
+   }), "Choose...")
+        @Html.ValidationMessageFor(model => model.CategoryID)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ProductPoster)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.ProductPoster)
+        @Html.ValidationMessageFor(model => model.ProductPoster)
+    </div>
+    <br />
+    <input type="file" name="file" /><br />
+    <input type="submit" value="Save" />
+
+</form>

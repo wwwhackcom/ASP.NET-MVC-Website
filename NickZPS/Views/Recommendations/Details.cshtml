@@ -1,0 +1,29 @@
+@model NickZPS.Models.Recommendation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Recommendation</legend>
+
+    <div class="display-label">UserID</div>
+    <div class="display-field">@Model.UserID</div>
+
+    <div class="display-label">UserName</div>
+    <div class="display-field">@Model.UserName</div>
+
+    <div class="display-label">Content</div>
+    <div class="display-field">@Model.Content</div>
+
+    <div class="display-label">Star</div>
+    <div class="display-field">@Model.Star</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

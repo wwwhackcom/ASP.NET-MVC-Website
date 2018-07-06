@@ -1,0 +1,70 @@
+﻿@model NickZPS.Models.Product
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-product-box" style="margin-top:60px">
+    <div class="product-shop">
+        <div class="product-main-info">
+            <h1 itemprop="name">@Model.ProductName</h1>
+            <div style="float:left;margin-left:30px">
+                <a href=""><img src=@Model.ProductPoster width="160" height="160" alt=""></a>
+            </div>
+            <div style="float:left;margin-left:100px;margin-top:30px">
+                <p class="in-stock">In stock:@Model.UnitsInStock</p>
+                <p>NZ$@Model.UnitPrice</p>
+                <div style="clear:both">
+                    <p>
+                        @Html.ActionLink("Buy now", "Add", "Cart", new { id = Model.ProductID }, new { @class = "btn btn-primary" })
+                        @*<a href="/Cart" class="btn btn-primary" role="button">
+                            Buy now
+                        </a>*@
+
+                        @Html.ActionLink("Add Cart", "Add", "Cart", new { id = Model.ProductID }, new { @class = "btn btn-default" })
+                        @*<a href="/Cart" class="btn btn-default" role="button">
+                            Add Cart
+                        </a>*@
+                    </p>
+                </div>
+            </div>
+            
+            <div style="clear:both;margin-left:30px">
+                <p class="description" itemprop="description">@Model.ProductDescription</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div id="div_recommendations" style="margin-bottom:30px;margin-top:30px;clear:both">
+    <br/><br/>
+<h3>Recommendations</h3>
+@foreach (var item in ViewBag.Recommendations)
+{
+    <div id="ember999" class="we-customer-review lockup ember-view">
+
+        <div class="we-customer-review__subhead">
+            <figure aria-label="5（max 5 point）" id="ember1001" class="we-customer-review__rating we-star-rating ember-view">
+                <span class="we-star-rating-stars-outlines">
+                    <span class="we-star-rating-stars we-star-rating-stars-5">Star:@item.Star</span>
+                </span>
+                <!---->
+            </figure>
+            <div id="ember1002" class="we-customer-review__user we-truncate we-truncate--single-line ember-view">
+                 User: @item.UserName
+            </div>
+        </div>
+        
+        Content: @item.Content
+
+        <!---->
+    </div>
+}
+</div>
+
+

@@ -1,0 +1,25 @@
+@model NickZPS.Models.Shipper
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Shipper</legend>
+
+        @Html.HiddenFor(model => model.ShipperID)
+		@Html.Partial("_CreateOrEdit", Model)
+        <br />
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

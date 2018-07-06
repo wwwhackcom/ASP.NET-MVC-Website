@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Complete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br/><br />
+<h2>Success!</h2>
+
+<p>Your order has been made successfully, go back to browse.</p>
+<br/>
+<a href="/HomeCategory" class="continue-link">Continue Shopping</a><br/>
+
+<input type="hidden" value="@ViewBag.Order" id="myHiddenVar" />
+<button type="button"style="display:none" onclick="goInvoice()">Create Invoice</button>
+@Html.ActionLink("Show Invoice", "Create", "ShowInvoice")
+<script>
+    function goInvoice() {
+        $.ajax(
+            {
+                type: "post",
+                url: "ShowInvoice/Index",
+                data: { order: null },
+                success: function (obj) {
+                    aler("success");
+                },
+                error: function () {
+                    aler("success");
+                }
+            }
+        );
+    }
+
+    function invoice() {
+        var order = $('#myHiddenVar').val();
+        $.ajax(
+            {
+                type : "post",
+                url : "ShowInvoice/Index",
+                data : { order : order },
+                success : function(obj) {
+                        aler("success");
+                    },
+                error: function () {
+                    aler("success");
+                }
+            }
+        );
+    }
+
+</script>

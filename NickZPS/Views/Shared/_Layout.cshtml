@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/front1.css" rel="stylesheet" type="text/css" />
+    <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet" >
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div style="float:left;padding-right:20px;" onclick="window.location='/Home'">
+                <img src="/Images/logo2.png" style="width:80px" />
+            </div>
+            <div class="navbar-header">
+               
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand active" })
+            </div>
+            
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Dog", "Products", "HomeCategory", new { id = 1 }, null)</li>
+                    <li>@Html.ActionLink("Cat", "Products", "HomeCategory", new { id = 7 }, null)</li>
+                    <li>@Html.ActionLink("Fish", "Products", "HomeCategory", new { id = 8 }, null)</li>
+                    <li>@Html.ActionLink("Bird", "Products", "HomeCategory", new { id = 9 }, null)</li>
+                    <li>@Html.ActionLink("Cart", "Index", "Cart")</li>
+                    <li>@Html.ActionLink("About", "Aboutus", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        @if (Session["username"] != null)
+                        {
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Session["username"]<span class="caret"></span></a>
+                        }
+                        else
+                        {
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account<span class="caret"></span></a>
+                        }
+                        <ul class="dropdown-menu" role="menu">
+                            @if (Session["username"] == null)
+                            {
+                                <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                                <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                            }
+                            else
+                            {
+                                if (Session["username"].Equals("Admin"))
+                                {
+                                    <li>@Html.ActionLink("Admin", "Index", "Categories")</li>
+                                }
+                                <li>@Html.ActionLink("Profile", "UserProfile", "Account", new { id = @Session["userId"] }, null)</li>
+                                <li>@Html.ActionLink("OrderHistory", "History", "Checkout")</li>
+                                <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                            }
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" action="/HomeCategory/Search" method="post">
+                    <input type="text" class="form-control" placeholder="Search..." name="searchText" value="@ViewBag.SearchTxt" style="display:block;float:left;width:200px">
+                    <input type="submit" class="btn btn-primary" value="Search" style="display:block;float:left;margin-left:20px">
+                </form>
+                
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <div class="footer-content">
+            <div id="holder-list">
+                <!-- START: STATIC FOOTER -->
+
+                <div class="menu-box">
+                    <h3><a href="/">Shop Now</a></h3><ul class="list menu">
+                        <li><a href="/HomeCategory" class="dog">Dog</a></li>
+                        <li><a href="/HomeCategory" class="cat">Cat</a></li>
+                        <li><a href="/HomeCategory" class="fish">Fish</a></li>
+                        <li><a href="/HomeCategory" class="reptile">Reptile</a></li>
+                        <li><a href="/HomeCategory" class="small-pet">Small Pet</a></li>
+                        <li><a href="/HomeCategory" class="bird">Bird</a></li>
+                        <li><a href="/HomeCategory" class="chicken">Chicken</a></li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3><a href="">Services</a></h3><ul class="list">
+                        <li><a href="/HomeCategory">Vet Care</a></li>
+                        <li><a href="/HomeCategory">Puppy School</a></li>
+                        <li><a href="/HomeCategory">Pet Grooming</a></li>
+                        <li><a href="/HomeCategory">DIY Dog Wash</a></li>
+                        <li><a href="/HomeCategory">Pet Adoption</a></li>
+                        <li><a href="/HomeCategory">Pet Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3><a href="">Policy</a></h3><ul class="list">
+                        <li><a href="/Home/Contact">Contact Us</a></li>
+                        <li><a href="/Home/Aboutus">Delivery Information</a></li>
+                        <li><a rel="nofollow" href="/Home/Aboutus">Security Policy</a></li>
+                        <li><a rel="nofollow" href="/Home/Aboutus">Privacy Policy</a></li>
+                        <li><a href="/Home/Aboutus">Returns Policy</a></li>
+                        <li><a href="/Home/Aboutus">FAQs</a></li>
+                        <li><a href="/Home/Aboutus">Repeat Delivery</a></li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3><a href="/Home/Aboutus">About Us</a></h3><ul class="list">
+                        <li><a href="/Home/Aboutus">About Us</a></li>
+                        <li><a href="/Home/Contact">Contact Us</a></li>
+                        <li><a href="/Home/Aboutus">Careers</a></li>
+                        <li><a href="/Home/Aboutus">Price Promise</a></li>
+                        <li><a href="/Home/Aboutus">Loyalty Programme</a></li>
+                    </ul>
+                </div>
+
+                <!-- END: STATIC FOOTER -->
+                <div class="box">
+                        <div>
+                            <h3><a href="">Social Media</a></h3>
+                            <ul>
+                                <li><a href="/Home/Aboutus" target="_blank">facebook</a></li>
+                                <li><a href="/Home/Aboutus" target="_blank">twitter</a></li>
+                            </ul>
+                        </div>
+                        
+                </div>
+                <div class="box">
+                    <h3><a href="">Address</a></h3>
+                    <address>
+                        Queet Street, <br />
+                        Auckland Central, Auckland 1010<br />
+                        <abbr title="Phone">Mobile:</abbr>
+                        02108809536
+                    </address>
+                </div>
+                <div style="padding-right:80px;float:right">
+                    <img src="/Images/logo.png" style="width:100px" />
+                </div>
+            </div>
+            
+        </div>
+
+        
+        <footer style="clear:both;text-align:center">
+            <p>&copy; @DateTime.Now.Year - Zara Pet Store Copyright</p>
+        </footer>
+        
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

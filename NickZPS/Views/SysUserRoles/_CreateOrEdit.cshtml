@@ -1,0 +1,26 @@
+@model NickZPS.Models.SysUserRole
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    SysUser
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.SysUserID, ((IEnumerable<NickZPS.Models.SysUser>)ViewBag.PossibleSysUsers).Select(option => new SelectListItem {
+        Text = (option == null ? "None" : option.UserName), 
+        Value = option.ID.ToString(),
+        Selected = (Model != null) && (option.ID == Model.SysUserID)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.SysUserID)
+</div>
+<div class="editor-label">
+    SysRole
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.SysRoleId, ((IEnumerable<NickZPS.Models.SysRole>)ViewBag.PossibleSysRoles).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option.RoleName).ToString(), 
+        Value = option.ID.ToString(),
+        Selected = (Model != null) && (option.ID == Model.SysRoleId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.SysRoleId)
+</div>

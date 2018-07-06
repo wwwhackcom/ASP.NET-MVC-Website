@@ -1,0 +1,35 @@
+@model NickZPS.Models.Invoice
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Invoice</legend>
+
+    <div class="display-label">InvoiceDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.InvoiceDate)</div>
+
+    <div class="display-label">SubTotal</div>
+    <div class="display-field">@String.Format("{0:F}", Model.SubTotal)</div>
+
+    <div class="display-label">Discount</div>
+    <div class="display-field">@Model.Discount</div>
+
+    <div class="display-label">User</div>
+    <div class="display-field">@(Model.User == null ? "None" : Model.User.LastName)</div>
+
+    <div class="display-label">InvoiceDetails</div>
+    <div class="display-field">@(Model.InvoiceDetails == null ? "None" : Model.InvoiceDetails.Count.ToString())</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+

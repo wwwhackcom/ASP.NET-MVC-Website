@@ -1,0 +1,59 @@
+@model NickZPS.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Order</legend>
+
+    <div class="display-label">OrderDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.OrderDate)</div>
+
+    <div class="display-label">RequiredDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.RequiredDate)</div>
+
+    <div class="display-label">ShippedDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.ShippedDate)</div>
+
+    <div class="display-label">ShipVia</div>
+    <div class="display-field">@Model.ShipVia</div>
+
+    <div class="display-label">Freight</div>
+    <div class="display-field">@String.Format("{0:F}", Model.Freight)</div>
+
+    <div class="display-label">ShipName</div>
+    <div class="display-field">@Model.ShipName</div>
+
+    <div class="display-label">ShipAddress</div>
+    <div class="display-field">@Model.ShipAddress</div>
+
+    <div class="display-label">ShipCity</div>
+    <div class="display-field">@Model.ShipCity</div>
+
+    <div class="display-label">ShipRegion</div>
+    <div class="display-field">@Model.ShipRegion</div>
+
+    <div class="display-label">ShipPostalCode</div>
+    <div class="display-field">@Model.ShipPostalCode</div>
+
+    <div class="display-label">ShipCountry</div>
+    <div class="display-field">@Model.ShipCountry</div>
+
+    <div class="display-label">User</div>
+    <div class="display-field">@(Model.User == null ? "None" : Model.User.LastName)</div>
+
+    <div class="display-label">OrderDetails</div>
+    <div class="display-field">@(Model.OrderDetails == null ? "None" : Model.OrderDetails.Count.ToString())</div>
+
+    <div class="display-label">Shipper</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Shipper).ToString()</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.OrderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

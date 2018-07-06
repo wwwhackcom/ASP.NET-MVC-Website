@@ -1,0 +1,59 @@
+@model IEnumerable<NickZPS.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>OrderDetail List</h2>
+
+<p>
+    @Html.ActionLink("Create New OrderDetail", "Create")
+</p>
+<table style="width:100%">
+    <tr>
+        <th>Operation</th>
+        <th>
+            UnitPrice
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Discount
+        </th>
+        <th>
+            Order
+        </th>
+        <th>
+            Product
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+			@String.Format("{0:F}", item.UnitPrice)
+        </td>
+        <td>
+			@item.Quantity
+        </td>
+        <td>
+			@item.Discount
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.Order.OrderID).ToString()
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.Product.ProductName).ToString()
+        </td>
+    </tr>
+}
+
+</table>
+
+

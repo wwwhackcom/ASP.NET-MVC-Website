@@ -1,0 +1,149 @@
+﻿@model NickZPS.Models.Order
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+<div id="checkout" style="margin-top:40px" class="logincellright logincreatecell col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div class="logincellinner">
+
+        <div class="validationsummary">
+            <div id="ct100" class="validsummary" style="color:Red;display:none;">
+
+            </div>
+            <span id="content7" style="color:Red;display:none;"></span>
+        </div>
+        <div id="content79" class="guestcheckoutcontact">
+            <div class="sectioncomment">All fields with an asterisk * are required.</div>
+        </div>
+        <div id="container" class="guestcheckoutblock inline-container form-group">
+
+            <div class="sectionbar">Shipping Address</div>
+            <div class="shippingaddress">
+
+                <div class="validationsummary">
+                    <div id="vds" class="validsummary" style="color:Red;display:none;">
+
+                    </div>
+                </div>
+                <div id="ShippingAddress">
+                    @*<div id="divTitle" class="addressrow addresstitle inline-container form-group">
+                        <span class="formsectiontext logincelltext">
+                            Contact Title:
+                        </span>
+                        <span class="sign">&nbsp;</span>
+                        <span class="formsectionvalue logincellvalue">
+                            <select name="ContactTitle" id="contactTitle" class="contacttitle form-control">
+                                <option value=""></option>
+                                <option value="Dr.">Dr.</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Mr.">Mr.</option>
+                                <option value="Mrs.">Mrs.</option>
+                                <option value="Ms.">Ms.</option>
+                                <option value="Prof.">Prof.</option>
+
+                            </select>
+
+                        </span>
+                    </div>*@
+                    <div id="divFirstName" class="addressrow addressfirstname inline-container form-group">
+                        <span class="formsectiontext logincelltext">
+                            Receiver Name:
+                        </span>
+                        <span class="sign">*</span>
+                        <span class="formsectionvalue logincellvalue">
+                            @*<input name="txtFirstName" type="text" id="txtFirstName" class="myaccountinput form-control" onkeypress="return NotAllowedReservedKeyAddress(event);" onkeyup="LimitLengthInTextBox(this,40);" data-submittargetid="guestcheckout">
+                            <span id="FirstNameRequired" class="fieldvalidator" style="color:Red;display:none;">*</span>*@
+                            @Html.TextBoxFor(model => model.ShipName, new { @class = "myaccountinput form-control", @placeholder = "Reciever Name" })
+                            @Html.ValidationMessageFor(model => model.ShipName)
+                        </span>
+                    </div>
+                </div>
+
+                <div id="divStreet" class="addressrow addressstreet inline-container form-group" style="height:100%;">
+
+                    <span class="formsectiontext logincelltext" style="vertical-align:top;">
+                        Street:
+                    </span>
+                    <span class="sign" style="vertical-align:top;">*</span>
+                    <span class="formsectionvalue logincellvalue">
+                        @*<textarea name="txtAddress1" rows="3" cols="20" id="txtAddress1" class="myaccountinput streetaddress form-control" onkeypress="return NotAllowedReservedKeyAddress(event);" onkeyup="LimitLengthInTextBox(this,255);"></textarea>
+                        <span id="StreetRequired" class="fieldvalidator" style="color:Red;vertical-align:top;display:none;">*</span>
+                        <span id="StreetValidation" class="fieldvalidator" style="color:Red;display:none;">*</span>*@
+                        @Html.TextBoxFor(model => model.ShipAddress, new { @class = "myaccountinput streetaddress form-control", @placeholder = "Ship Address" })
+                        @Html.ValidationMessageFor(model => model.ShipAddress)
+                    </span>
+
+                </div>
+                <div id="divRegion" class="addressrow addresscity inline-container form-group">
+                    <span class="formsectiontext logincelltext">
+                        Region:
+                    </span>
+                    <span class="sign">*</span>
+                    <span class="formsectionvalue logincellvalue">
+                        @Html.TextBoxFor(model => model.ShipRegion, new { @class = "myaccountinput form-control", @placeholder = "Ship Region" })
+                        @Html.ValidationMessageFor(model => model.ShipRegion)
+                    </span>
+                </div>
+
+                <div id="divCity" class="addressrow addresscity inline-container form-group">
+
+                    <span class="formsectiontext logincelltext">
+                        State/City:
+                    </span>
+                    <span class="sign">*</span>
+                    <span class="formsectionvalue logincellvalue">
+                        @*<input name="txtAddress3" type="text" id="txtAddress3" class="myaccountinput form-control" onkeypress="return NotAllowedReservedKeyAddress(event);" onkeyup="LimitLengthInTextBox(this,40);" data-submittargetid="guestcheckout">
+                        <span id="StateCityRequired" class="fieldvalidator" style="color:Red;display:none;">*</span>*@
+                        @Html.TextBoxFor(model => model.ShipCity, new { @class = "myaccountinput form-control", @placeholder = "Ship Address" })
+                        @Html.ValidationMessageFor(model => model.ShipCity)
+                    </span>
+
+                </div>
+                <div id="divPostcode" class="addressrow addresspostcode inline-container form-group">
+                    <span class="formsectiontext logincelltext">
+                        Postcode:
+                    </span>
+                    <span class="sign">*</span>
+                    <span class="formsectionvalue postcoderow logincellvalue">
+                        @*<input name="txtPostCode" type="text" id="txtPostCode" class="postcodeinput form-control" onkeypress="return NotAllowedReservedKeyPostcode(event);" onkeyup="LimitLengthInTextBox(this,12);" data-submittargetid="guestcheckout">
+                        <span id="PostCodeRequired" class="fieldvalidator" style="color:Red;display:none;">*</span>*@
+                        @Html.TextBoxFor(model => model.ShipPostalCode, new { @class = "postcodeinput form-control", @placeholder = "Ship Postcode" })
+                        @Html.ValidationMessageFor(model => model.ShipPostalCode)
+                    </span>
+
+                </div>
+                <div id="divCountry" class="addressrow addresscountry inline-container form-group">
+
+                    <span class="formsectiontext logincelltext">
+                        Country:
+                    </span>
+                    <span class="sign">*</span>
+                    <span class="formsectionvalue logincellvalue">
+                        @Html.TextBoxFor(model => model.ShipCountry, new { @class = "postcodeinput form-control", @placeholder = "Ship Country" })
+                        @Html.ValidationMessageFor(model => model.ShipCountry)
+                    </span>
+
+                </div>
+                <div class="hidden">
+                    <input name="txtInitialAddressString" type="text" id="txtInitialAddressString">
+                    <input name="txtAddressId" type="text" id="txtAddressId">
+                </div>
+
+            </div>
+
+        </div>
+        
+        <div id="aaa" class="guestcheckoutblock inline-container form-group">
+            <div id="aa" class="loginbutton form-buttons">
+                <input name="a" type="submit" id="a" class="button major guestcheckoutbutton btn" data-submitid="guestcheckout" value="Submit">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+}

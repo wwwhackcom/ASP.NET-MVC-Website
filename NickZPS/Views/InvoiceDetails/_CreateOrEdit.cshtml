@@ -1,0 +1,66 @@
+@model NickZPS.Models.InvoiceDetail
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.UnitPrice)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.UnitPrice)
+    @Html.ValidationMessageFor(model => model.UnitPrice)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Quantity)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Quantity)
+    @Html.ValidationMessageFor(model => model.Quantity)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Discount)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Discount)
+    @Html.ValidationMessageFor(model => model.Discount)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.OrderDate)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.OrderDate)
+    @Html.ValidationMessageFor(model => model.OrderDate)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.ProductName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.ProductName)
+    @Html.ValidationMessageFor(model => model.ProductName)
+</div>
+
+<div class="editor-label">
+    Invoice
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.InvoiceID, ((IEnumerable<NickZPS.Models.Invoice>)ViewBag.PossibleInvoices).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option.InvoiceID).ToString(), 
+        Value = option.InvoiceID.ToString(),
+        Selected = (Model != null) && (option.InvoiceID == Model.InvoiceID)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.InvoiceID)
+</div>
+<div class="editor-label">
+    Product
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.ProductID, ((IEnumerable<NickZPS.Models.Product>)ViewBag.PossibleProducts).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option.ProductName).ToString(), 
+        Value = option.ProductID.ToString(),
+        Selected = (Model != null) && (option.ProductID == Model.ProductID)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.ProductID)
+</div>

@@ -1,0 +1,50 @@
+@model NickZPS.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Product</legend>
+
+    <div class="display-label">ProductName</div>
+    <div class="display-field">@Model.ProductName</div>
+
+    <div class="display-label">ProductDescription</div>
+    <div class="display-field">@Model.ProductDescription</div>
+
+    <div class="display-label">QuantityPerUnit</div>
+    <div class="display-field">@Model.QuantityPerUnit</div>
+
+    <div class="display-label">UnitPrice</div>
+    <div class="display-field">@String.Format("{0:F}", Model.UnitPrice)</div>
+
+    <div class="display-label">UnitsInStock</div>
+    <div class="display-field">@Model.UnitsInStock</div>
+
+    <div class="display-label">UnitsOnOrder</div>
+    <div class="display-field">@Model.UnitsOnOrder</div>
+
+    <div class="display-label">ReorderLevel</div>
+    <div class="display-field">@Model.ReorderLevel</div>
+
+    <div class="display-label">Discontinued</div>
+    <div class="display-field">@Model.Discontinued</div>
+
+    <div class="display-label">ProductPoster</div>
+    <div class="display-field">@Model.ProductPoster</div>
+
+    <div class="display-label">Category</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Category).ToString()</div>
+
+    <div class="display-label">OrderDetails</div>
+    <div class="display-field">@(Model.OrderDetails == null ? "None" : Model.OrderDetails.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ProductID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

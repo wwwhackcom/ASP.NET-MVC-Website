@@ -1,0 +1,38 @@
+@model NickZPS.Models.InvoiceDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>InvoiceDetail</legend>
+
+    <div class="display-label">UnitPrice</div>
+    <div class="display-field">@String.Format("{0:F}", Model.UnitPrice)</div>
+
+    <div class="display-label">Quantity</div>
+    <div class="display-field">@Model.Quantity</div>
+
+    <div class="display-label">Discount</div>
+    <div class="display-field">@Model.Discount</div>
+
+    <div class="display-label">OrderDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.OrderDate)</div>
+
+    <div class="display-label">ProductName</div>
+    <div class="display-field">@Model.ProductName</div>
+
+    <div class="display-label">Invoice</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Invoice).ToString()</div>
+
+    <div class="display-label">Product</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Product).ToString()</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

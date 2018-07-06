@@ -1,0 +1,32 @@
+@model NickZPS.Models.Invoice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Invoice</legend>
+
+    <div class="display-label">InvoiceDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.InvoiceDate)</div>
+
+    <div class="display-label">SubTotal</div>
+    <div class="display-field">@String.Format("{0:F}", Model.SubTotal)</div>
+
+    <div class="display-label">Discount</div>
+    <div class="display-field">@Model.Discount</div>
+
+    <div class="display-label">User</div>
+    <div class="display-field">@(Model.User == null ? "None" : Model.User.LastName)</div>
+
+    <div class="display-label">InvoiceDetails</div>
+    <div class="display-field">@(Model.InvoiceDetails == null ? "None" : Model.InvoiceDetails.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.InvoiceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

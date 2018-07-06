@@ -1,0 +1,86 @@
+﻿@model NickZPS.Models.Invoice
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Invoice</h2>
+
+<table style="width:70%;margin:30px">
+    <tr>
+        <th>
+            InvoiceDate
+        </th>
+        <th>
+            SubTotal
+        </th>
+        <th>
+            Discount
+        </th>
+        <th>
+            User
+        </th>
+        <th>
+            InvoiceDetails
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            @String.Format("{0:g}", Model.InvoiceDate)
+        </td>
+        <td>
+            @String.Format("{0:F}", Model.SubTotal)
+        </td>
+        <td>
+            @Model.Discount
+        </td>
+        <td>
+            @(Model.User == null ? "None" : Model.User.UserName)
+        </td>
+        <td>
+            @(Model.InvoiceDetails == null ? "None" : Model.InvoiceDetails.Count.ToString())
+        </td>
+    </tr>
+
+</table>
+
+<h3>Details</h3>
+<table style="width:70%;margin:30px">
+    <tr>
+        <th>
+            Product
+        </th>
+        <th>
+            UnitPrice
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Discount
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model.InvoiceDetails)
+    {
+        <tr>
+            <td>
+                @item.ProductName
+            </td>
+            <td>
+                NZ$@String.Format("{0:F}", item.UnitPrice)
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @item.Discount
+            </td>
+
+        </tr>
+    }
+
+</table>

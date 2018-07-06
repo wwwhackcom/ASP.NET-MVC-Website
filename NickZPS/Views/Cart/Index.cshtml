@@ -1,0 +1,151 @@
+﻿@model IEnumerable<NickZPS.Models.CartProduct>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cart">
+    <div class="page-title title-buttons" style="margin-bottom:20px;">
+        <h1>Shopping Cart</h1>
+        <ul class="checkout-types" style="display:none">
+            <li>
+                <button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout btn-checkout" onclick="window.location='/Checkout';"><span><span>Proceed to Checkout</span></span></button>
+            </li>
+        </ul>
+    </div>
+    
+    <form action="" method="post" class="product-form-info" name="mycart">
+        <input name="form_key" type="hidden" value="lFKY52JYnHYxgJsj">
+        <fieldset>
+            <table id="shopping-cart-table" class="data-table cart-table">
+                <tbody>
+                    <tr class="first last odd">
+                        <th class="first"><div class="holder"><span class="nobr">Product Name</span></div></th>
+                        <th class="description">&nbsp;</th>
+                        <th><div class="holder"><span class="nobr">Unit Price</span></div></th>
+                        <th><div class="holder">Qty</div></th>
+                        <th class="last"><div class="holder">Subtotal</div></th>
+                    </tr>
+                    
+                    @foreach (var item in Model)
+                    {
+                        var product = (NickZPS.Models.Product)item.prouduct;
+                        var cartpriceid = "cartprice" + product.ProductID;
+                        var inputQuantityid = "inputQuantity" + product.ProductID;
+                        var btnPlusid = "btnPlus" + product.ProductID;
+                        var btnMinusid = "btnMinus" + product.ProductID;
+                        var quan = item.Quan;
+                        <tr class="even">
+                            <td class="first">
+                                <a href="" title="" class="product-image">
+                                    <img src="@product.ProductPoster" width="80" height="80" alt="">
+                                </a>
+                            </td>
+                            <td class="description">
+                                <h2 class="product-name" style="padding-right:20px">
+                                    <a href="">@product.ProductName</a>
+                                </h2>
+                            </td>
+
+                            <td class="price">
+                                <span class="cart-price">
+                                    <span class="price">NZ$@product.UnitPrice</span>
+                                </span>
+                            </td>
+                            <td>
+                                <div class="quantity">
+                                    <div class="qty-box" style="width:20px;float:left">
+                                        <input type="number" id="@inputQuantityid" value="1">
+                                    </div>
+                                    <div style="float:left">
+                                        <input type="button" id=@btnPlusid onclick="plus(this.id, @product.UnitPrice)" value="+" />
+                                        <input type="button" id=@btnMinusid onclick="minus(this.id, @product.UnitPrice)" value="-" />
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td class="last">
+                                <span class="cart-price">
+                                    <span id="@cartpriceid" class="price">NZ$@product.UnitPrice</span>
+                                </span>
+                                @Html.ActionLink("Remove", "Remove", new { id = product.ProductID })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <script type="text/javascript">decorateTable('shopping-cart-table',{'tbody tr' : ['odd', 'even', 'first', 'last-row'], 'tr td' : ['first', 'last']})</script>
+        </fieldset>
+    </form>
+    <div class="cart-area">
+        <div class="cart-holder-info">
+            <div class="totals">
+                <table id="shopping-cart-totals-table">
+                    <tbody>
+                        <tr class="total">
+                            <td class="a-left">Total</td>
+                            <td class="a-right"><span id="total"><strong>NZ$@ViewBag.Total</strong></span></td>
+                        </tr>
+                        <tr class="">
+                            <td class="a-left">GST</td>
+                            <td class="a-right">
+                                <span id="gst">
+                                    NZ$@ViewBag.Gst
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="continue-shopping">
+                <a href="/" class="continue-link">Continue Shopping</a>
+            </div>
+            <div class="checkout-options">
+                <button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout btn-checkout" onclick="window.location='/Checkout';"><span><span>Proceed to Checkout</span></span></button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function plus(id, price) {
+        var tmpId = id.substring(7, id.length);
+        var inputQuan = "#inputQuantity"+tmpId;
+        var quan = $(inputQuan).val() * 1;
+        quan += 1;
+        $(inputQuan).attr("value", quan);
+        refresh(quan, tmpId, price);
+    }
+
+    function minus(id, price) {
+        var tmpId = id.substring(8, id.length);
+        var inputQuan = "#inputQuantity" + tmpId;
+        var quan = $(inputQuan).val() * 1;
+        if (quan == 0)
+            return;
+
+        quan -= 1;
+        $(inputQuan).attr("value", quan);
+        refresh(quan, tmpId, price);
+    }
+
+    function refresh(quan, id, price) {
+        var cartpriceid = "#cartprice" + id;
+        var total = 0;
+        var gst = 0;
+        $(cartpriceid).text("NZ$" + (price * quan).toFixed(2));
+        $("span[id^='cartprice']").each(function(){
+            var tmp = $(this).text();
+            tmp = tmp.substring(3, tmp.length);
+            total += tmp;
+        });
+        
+        $("#total").text("NZ$"+(total * 1.0).toFixed(2));
+        $("#gst").text("NZ$"+(total * 0.15).toFixed(2));
+    }
+</script>

@@ -9,7 +9,7 @@ namespace NickZPS.Models
 {
     public class NickZPSContext : DbContext
     {
-        public NickZPSContext() : base("NickZPS")
+        public NickZPSContext() : base("NickDBZPS")
         {
 
         }
